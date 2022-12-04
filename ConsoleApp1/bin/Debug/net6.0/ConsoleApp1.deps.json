@@ -1,0 +1,50 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "ConsoleApp1/1.0.0": {
+        "dependencies": {
+          "SDRInterface": "1.0.0",
+          "SDRInterface.RtlSdr": "1.0.0"
+        },
+        "runtime": {
+          "ConsoleApp1.dll": {}
+        }
+      },
+      "SDRInterface/1.0.0": {
+        "runtime": {
+          "SDRInterface.dll": {}
+        }
+      },
+      "SDRInterface.RtlSdr/1.0.0": {
+        "dependencies": {
+          "SDRInterface": "1.0.0"
+        },
+        "runtime": {
+          "SDRInterface.RtlSdr.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ConsoleApp1/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SDRInterface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SDRInterface.RtlSdr/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

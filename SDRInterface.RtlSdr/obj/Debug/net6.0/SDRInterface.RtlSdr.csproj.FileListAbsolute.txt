@@ -1,0 +1,15 @@
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\bin\Debug\net6.0\SDRInterface.RtlSdr.deps.json
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\bin\Debug\net6.0\SDRInterface.RtlSdr.dll
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\bin\Debug\net6.0\SDRInterface.RtlSdr.pdb
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\bin\Debug\net6.0\SDRInterface.dll
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\bin\Debug\net6.0\SDRInterface.pdb
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.csproj.AssemblyReference.cache
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.AssemblyInfoInputs.cache
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.AssemblyInfo.cs
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.csproj.CoreCompileInputs.cache
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.csproj.CopyComplete
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.dll
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\refint\SDRInterface.RtlSdr.dll
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\SDRInterface.RtlSdr.pdb
+C:\Users\qq276\RiderProjects\SDRInterface\SDRInterface.RtlSdr\obj\Debug\net6.0\ref\SDRInterface.RtlSdr.dll

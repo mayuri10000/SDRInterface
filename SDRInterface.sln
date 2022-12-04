@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDRInterface", "SDRInterface\SDRInterface.csproj", "{899ADF12-411E-4D98-A07F-81CFD2D2A653}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDRInterface.RtlSdr", "SDRInterface.RtlSdr\SDRInterface.RtlSdr.csproj", "{6D5F0077-4523-4766-A9B4-0D8E2B70D597}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDRInterface.Tests", "SDRInterface.Tests\SDRInterface.Tests.csproj", "{D2843C5F-FFED-47EF-9A14-2721E4A48C18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{899ADF12-411E-4D98-A07F-81CFD2D2A653}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{899ADF12-411E-4D98-A07F-81CFD2D2A653}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{899ADF12-411E-4D98-A07F-81CFD2D2A653}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{899ADF12-411E-4D98-A07F-81CFD2D2A653}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D5F0077-4523-4766-A9B4-0D8E2B70D597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D5F0077-4523-4766-A9B4-0D8E2B70D597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D5F0077-4523-4766-A9B4-0D8E2B70D597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D5F0077-4523-4766-A9B4-0D8E2B70D597}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2843C5F-FFED-47EF-9A14-2721E4A48C18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2843C5F-FFED-47EF-9A14-2721E4A48C18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2843C5F-FFED-47EF-9A14-2721E4A48C18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2843C5F-FFED-47EF-9A14-2721E4A48C18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
