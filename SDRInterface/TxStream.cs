@@ -82,8 +82,8 @@ namespace SDRInterface;
                     timeNs,
                     timeoutUs);
 
-                result = deviceOutput.Result;
-                ret = deviceOutput.Code;
+                result = deviceOutput;
+                ret = deviceOutput.Status;
             }
             else throw new InvalidOperationException("Stream is closed");
 
@@ -214,8 +214,8 @@ namespace SDRInterface;
                     timeNs,
                     timeoutUs);
 
-                result = deviceOutput.Result;
-                ret = deviceOutput.Code;
+                result = deviceOutput;
+                ret = deviceOutput.Status;
             }
             else throw new InvalidOperationException("Stream is closed");
 
@@ -237,8 +237,8 @@ namespace SDRInterface;
             {
                 var deviceOutput = _device.ReadStreamStatus(_streamHandle, timeoutUs);
 
-                result = deviceOutput.Result;
-                ret = deviceOutput.Code;
+                result = deviceOutput;
+                ret = deviceOutput.Status;
             }
             else throw new InvalidOperationException("Stream is closed");
 

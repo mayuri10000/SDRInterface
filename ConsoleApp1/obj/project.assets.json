@@ -145,6 +145,19 @@
           "bin/placeholder/SDRInterface.dll": {}
         }
       },
+      "SDRInterface.HackRF/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "SDRInterface": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/SDRInterface.HackRF.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/SDRInterface.HackRF.dll": {}
+        }
+      },
       "SDRInterface.RtlSdr/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
@@ -348,6 +361,11 @@
       "path": "../SDRInterface/SDRInterface.csproj",
       "msbuildProject": "../SDRInterface/SDRInterface.csproj"
     },
+    "SDRInterface.HackRF/1.0.0": {
+      "type": "project",
+      "path": "../SDRInterface.HackRF/SDRInterface.HackRF.csproj",
+      "msbuildProject": "../SDRInterface.HackRF/SDRInterface.HackRF.csproj"
+    },
     "SDRInterface.RtlSdr/1.0.0": {
       "type": "project",
       "path": "../SDRInterface.RtlSdr/SDRInterface.RtlSdr.csproj",
@@ -357,6 +375,7 @@
   "projectFileDependencyGroups": {
     "net6.0": [
       "SDRInterface >= 1.0.0",
+      "SDRInterface.HackRF >= 1.0.0",
       "SDRInterface.RtlSdr >= 1.0.0"
     ]
   },
@@ -393,6 +412,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
+            "C:\\Users\\qq276\\RiderProjects\\SDRInterface\\SDRInterface.HackRF\\SDRInterface.HackRF.csproj": {
+              "projectPath": "C:\\Users\\qq276\\RiderProjects\\SDRInterface\\SDRInterface.HackRF\\SDRInterface.HackRF.csproj"
+            },
             "C:\\Users\\qq276\\RiderProjects\\SDRInterface\\SDRInterface.RtlSdr\\SDRInterface.RtlSdr.csproj": {
               "projectPath": "C:\\Users\\qq276\\RiderProjects\\SDRInterface\\SDRInterface.RtlSdr\\SDRInterface.RtlSdr.csproj"
             },

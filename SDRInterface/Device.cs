@@ -114,7 +114,7 @@ public abstract partial class Device : IDisposable
     /// <param name="channel">an available channel on the device</param>
     /// <param name="fullScale">the maximum possible value</param>
     /// <returns>the native stream buffer format string</returns>
-    public virtual string GetNativeStreamFormat(Direction direction, uint channel, ref double fullScale)
+    public virtual string GetNativeStreamFormat(Direction direction, uint channel, out double fullScale)
     {
         fullScale = (double)(1 << 15);
         return StreamFormat.ComplexInt16;
@@ -313,18 +313,39 @@ public abstract partial class Device : IDisposable
         long timeNs = 0,
         uint numElems = 0) => flags == StreamFlags.None ? ErrorCode.None : ErrorCode.NotSupported;
 
+    /// <summary>
+    /// Deactivate a stream.
+    /// Call deactivate when not using using read/write().
+    /// The implementation control switches or halt data flow.
+    ///
+    /// The timeNs is only valid when the flags have SOAPY_SDR_HAS_TIME.
+    /// Not all implementations will support the full range of options.
+    /// In this case, the implementation returns <see cref="ErrorCode.NotSupported"/>.
+    /// </summary>
+    /// <param name="stream">The stream handle</param>
+    /// <param name="flags">optional flag indicators about the stream</param>
+    /// <param name="timeNs">optional deactivation time in nanoseconds</param>
+    /// <returns>None for success or error code on failure</returns>
     protected internal virtual ErrorCode DeactivateStream(StreamHandle stream, StreamFlags flags = StreamFlags.None, long timeNs = 0)
         => flags == StreamFlags.None ? ErrorCode.None : ErrorCode.NotSupported;
 
-    protected internal virtual StreamResultPairInternal ReadStream(StreamHandle stream, IList<UIntPtr> buffs,
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="stream"></param>
+    /// <param name="buffs"></param>
+    /// <param name="numElems"></param>
+    /// <param name="timeoutUs"></param>
+    /// <returns></returns>
+    protected internal virtual unsafe StreamResult ReadStream(StreamHandle stream, void*[] buffs,
         uint numElems,
-        long timeoutUs = 100000) => new StreamResultPairInternal() { Code = ErrorCode.NotSupported, Result = default };
+        long timeoutUs = 100000) => new StreamResult() { Status = ErrorCode.NotSupported };
 
-    protected internal virtual StreamResultPairInternal WriteStream(StreamHandle stream, IList<UIntPtr> buffs, uint numElems,
-        StreamFlags flags, long timeNs, long timeoutUs = 100000) => new StreamResultPairInternal() { Code = ErrorCode.NotSupported, Result = default };
+    protected internal virtual unsafe StreamResult WriteStream(StreamHandle stream, void*[] buffs, uint numElems,
+        StreamFlags flags, long timeNs, long timeoutUs = 100000) => new StreamResult() { Status = ErrorCode.NotSupported };
 
-    protected internal virtual StreamResultPairInternal ReadStreamStatus(StreamHandle stream, long timeoutUs = 100000)
-        => new StreamResultPairInternal() { Code = ErrorCode.NotSupported, Result = default };
+    protected internal virtual StreamResult ReadStreamStatus(StreamHandle stream, long timeoutUs = 100000)
+        => new StreamResult() { Status = ErrorCode.NotSupported };
     
     #endregion
     
@@ -332,16 +353,19 @@ public abstract partial class Device : IDisposable
 
     public virtual uint GetNumDirectAccessBuffers(StreamHandle stream) => 0;
 
-    public virtual ErrorCode GetDirectAccessBufferAddrs(StreamHandle stream, int index, IList<UIntPtr> buffs) =>
+    public virtual unsafe ErrorCode GetDirectAccessBufferAddrs(StreamHandle stream, int index, void*[] buffs) =>
         ErrorCode.NotSupported;
 
-    public virtual StreamResultPairInternal AcquireReadBuffer(StreamHandle stream, ref int index, IList<UIntPtr> buffs,
-        long timeoutUs = 100000) => new StreamResultPairInternal() { Code = ErrorCode.NotSupported, Result = default };
+    public virtual unsafe StreamResult AcquireReadBuffer(StreamHandle stream, ref int index, void*[] buffs,
+        long timeoutUs = 100000)
+    {
+        return new StreamResult() { Status = ErrorCode.NotSupported };
+    }
 
     public virtual void ReleaseReadBuffer(StreamHandle stream, int index) { }
 
-    public virtual ErrorCode AcquireWriteBuffer(StreamHandle stream, ref int index, IList<UIntPtr> buffs,
-        long timeoutUs = 100000) => ErrorCode.NotSupported;
+    public virtual unsafe StreamResult AcquireWriteBuffer(StreamHandle stream, ref int index, void*[] buffs,
+        long timeoutUs = 100000) => new StreamResult() { Status = ErrorCode.NotSupported };
 
     /// <summary>
     /// 

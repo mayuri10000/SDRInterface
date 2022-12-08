@@ -68,8 +68,8 @@ public class RxStream : Stream
                 (uint)memory[0].Length,
                 timeoutUs);
 
-            result = deviceOutput.Result;
-            ret = deviceOutput.Code;
+            result = deviceOutput;
+            ret = deviceOutput.Status;
         }
         else throw new InvalidOperationException("Stream is closed");
 
@@ -178,8 +178,8 @@ public class RxStream : Stream
                 numElems,
                 timeoutUs);
 
-            result = deviceOutput.Result;
-            ret = deviceOutput.Code;
+            result = deviceOutput;
+            ret = deviceOutput.Status;
         }
         else throw new InvalidOperationException("Stream is closed");
 

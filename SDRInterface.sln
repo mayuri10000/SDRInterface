@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDRInterface.Tests", "SDRIn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SDRInterface.HackRF", "SDRInterface.HackRF\SDRInterface.HackRF.csproj", "{CA23B5BF-9FB6-48D4-BF5B-5E0A96F253A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7572ABA-DC5F-4B8D-ACFC-34A5B59F2240}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA23B5BF-9FB6-48D4-BF5B-5E0A96F253A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA23B5BF-9FB6-48D4-BF5B-5E0A96F253A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA23B5BF-9FB6-48D4-BF5B-5E0A96F253A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA23B5BF-9FB6-48D4-BF5B-5E0A96F253A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

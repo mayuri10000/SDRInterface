@@ -5,9 +5,11 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\SDRInterface.HackRF\SDRInterface.HackRF.csproj" />
       <ProjectReference Include="..\SDRInterface.RtlSdr\SDRInterface.RtlSdr.csproj" />
       <ProjectReference Include="..\SDRInterface\SDRInterface.csproj" />
     </ItemGroup>

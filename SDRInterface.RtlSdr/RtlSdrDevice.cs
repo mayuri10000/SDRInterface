@@ -81,9 +81,9 @@ public unsafe partial class RtlSdrDevice : Device
         RtlApi.Close(_dev);
 
         // free gc handle
-        if (this._gcHandle.IsAllocated)
-            this._gcHandle.Free();
-        GC.SuppressFinalize((object) this);
+        if (_gcHandle.IsAllocated)
+            _gcHandle.Free();
+        GC.SuppressFinalize(this);
     }
 
     #region Registration

@@ -1,5 +1,8 @@
 ﻿namespace SDRInterface;
 
+/// <summary>
+/// Constant to represent the signal direction (TX/RX)
+/// </summary>
 public enum Direction
 {
     Tx,

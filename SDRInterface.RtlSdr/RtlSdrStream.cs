@@ -35,7 +35,7 @@ public unsafe partial class RtlSdrDevice
     public override IList<string> GetStreamFormats(Direction direction, uint channel)
         => new List<string>() { StreamFormat.ComplexInt8, StreamFormat.ComplexInt16, StreamFormat.ComplexFloat32 };
 
-    public override string GetNativeStreamFormat(Direction direction, uint channel, ref double fullScale)
+    public override string GetNativeStreamFormat(Direction direction, uint channel, out double fullScale)
     {
         //check that direction RX
         if (direction != Direction.Rx)
@@ -232,7 +232,7 @@ public unsafe partial class RtlSdrDevice
 
     protected override void CloseStream(StreamHandle stream)
     {
-        DeactivateStream(stream, StreamFlags.None, 0);
+        DeactivateStream(stream);
         foreach (var buff in _buffs)
         {
             Marshal.FreeHGlobal((IntPtr) buff.data);
@@ -276,7 +276,7 @@ public unsafe partial class RtlSdrDevice
         return ErrorCode.None;
     }
 
-    protected override StreamResultPairInternal ReadStream(StreamHandle stream, IList<UIntPtr> buffs, uint numElems, long timeoutUs = 100000)
+    protected override StreamResult ReadStream(StreamHandle stream, void*[] buffs, uint numElems, long timeoutUs = 100000)
     {
         if (_resetBuffer == 1 && _bufferedElems != 0)
         {
@@ -284,15 +284,18 @@ public unsafe partial class RtlSdrDevice
             ReleaseReadBuffer(stream, _currentHandle);
         }
 
-        var buff = (void*)buffs[0];
+        var buff = buffs[0];
         var flags = StreamFlags.None;
         var timeNs = 0l;
 
         if (_bufferedElems == 0)
         {
-            var ret = AcquireReadBuffer(stream, ref _currentHandle, new List<UIntPtr>() { (UIntPtr)_currentBuf }, timeoutUs);
-            if (ret.Code < 0) return ret;
-            _bufferedElems = (uint)ret.Code;
+            var buffers = new void*[1];
+            var ret = AcquireReadBuffer(stream, ref _currentHandle, buffers, timeoutUs);
+            if (ret.Status < 0) return ret;
+
+            _currentBuf = (byte*) buffers[0];
+            _bufferedElems = (uint)ret.NumSamples;
         }
         else
         {
@@ -309,7 +312,7 @@ public unsafe partial class RtlSdrDevice
             {
                 for (var i = 0; i < returnedElems; i++)
                 {
-                    var tmp = _lut_swap_32f[*(ushort*)_currentBuf[2 * i]];
+                    var tmp = _lut_swap_32f[((ushort*)_currentBuf)[i]];
                     ftarget[i * 2] = tmp.Item1;
                     ftarget[i * 2 + 1] = tmp.Item2;
                 }
@@ -318,7 +321,7 @@ public unsafe partial class RtlSdrDevice
             {
                 for (var i = 0; i < returnedElems; i++)
                 {
-                    var tmp = _lut_32f[*(ushort*)_currentBuf[2 * i]];
+                    var tmp = _lut_32f[((ushort*)_currentBuf)[i]];
                     ftarget[i * 2] = tmp.Item1;
                     ftarget[i * 2 + 1] = tmp.Item2;
                 }
@@ -331,7 +334,7 @@ public unsafe partial class RtlSdrDevice
             {
                 for (var i = 0; i < returnedElems; i++)
                 {
-                    var tmp = _lut_swap_16i[*(ushort*)_currentBuf[2 * i]];
+                    var tmp = _lut_swap_16i[((ushort*)_currentBuf)[i]];
                     itarget[i * 2] = tmp.Item1;
                     itarget[i * 2 + 1] = tmp.Item2;
                 }
@@ -340,7 +343,7 @@ public unsafe partial class RtlSdrDevice
             {
                 for (var i = 0; i < returnedElems; i++)
                 {
-                    var tmp = _lut_16i[*(ushort*)_currentBuf[2 * i]];
+                    var tmp = _lut_16i[((ushort*)_currentBuf)[i]];
                     itarget[i * 2] = tmp.Item1;
                     itarget[i * 2 + 1] = tmp.Item2;
                 }
@@ -374,15 +377,12 @@ public unsafe partial class RtlSdrDevice
         if (_bufferedElems != 0) flags |= StreamFlags.MoreFragments;
         else ReleaseReadBuffer(stream, _currentHandle);
         
-        return new StreamResultPairInternal()
+        return new StreamResult()
         {
-            Code = ErrorCode.None,
-            Result = new StreamResult()
-            {
-                NumSamples = (int) returnedElems,
-                Flags = flags,
-                TimeNs = timeNs
-            }
+            Status = ErrorCode.None,
+            NumSamples = (int) returnedElems,
+            Flags = flags,
+            TimeNs = timeNs
         };
     }
 
@@ -391,14 +391,13 @@ public unsafe partial class RtlSdrDevice
         return (uint) _buffs.Length;
     }
 
-    public override ErrorCode GetDirectAccessBufferAddrs(StreamHandle stream, int index, IList<UIntPtr> buffs)
+    public override ErrorCode GetDirectAccessBufferAddrs(StreamHandle stream, int index, void*[] buffs)
     {
-        buffs.Clear();
-        buffs.Add((UIntPtr) _buffs[index].data);
+        buffs[0] = _buffs[index].data;
         return 0;
     }
 
-    public override StreamResultPairInternal AcquireReadBuffer(StreamHandle stream, ref int index, IList<UIntPtr> buffs, long timeoutUs = 100000)
+    public override StreamResult AcquireReadBuffer(StreamHandle stream, ref int index, void*[] buffs, long timeoutUs = 100000)
     {
         if (_resetBuffer == 1)
         {
@@ -412,9 +411,9 @@ public unsafe partial class RtlSdrDevice
             _bufHead = (_bufHead + Interlocked.Exchange(ref _bufCount, 0)) % _numBuffers;
             Interlocked.Exchange(ref _overflowEvent, 0);
             Logger.Log(LogLevel.SSI, "O");
-            return new StreamResultPairInternal()
+            return new StreamResult()
             {
-                Code = ErrorCode.Overflow,
+                Status = ErrorCode.Overflow,
             };
         }
 
@@ -424,9 +423,9 @@ public unsafe partial class RtlSdrDevice
             {
                 Monitor.Wait(_bufMutex, TimeSpan.FromMilliseconds(timeoutUs));
                 if (_bufCount == 0)
-                    return new StreamResultPairInternal()
+                    return new StreamResult()
                     {
-                        Code = ErrorCode.Timeout
+                        Status = ErrorCode.Timeout
                     };
             }
         }
@@ -435,19 +434,15 @@ public unsafe partial class RtlSdrDevice
         _bufHead = (_bufHead + 1) % _numBuffers;
         _bufTicks = _buffs[index].tick;
         var timeNs = Time.TicksToTimeNs(_buffs[index].tick, _sampleRate);
-        buffs.Clear();
-        buffs.Add((UIntPtr) _buffs[index].data);
+        buffs[0] = _buffs[index].data;
         var flags = StreamFlags.HasTime;
 
-        return new StreamResultPairInternal()
+        return new StreamResult()
         {
-            Code = ErrorCode.None,
-            Result = new StreamResult()
-            {
-                Flags = flags,
-                TimeNs = timeNs,
-                NumSamples = (int)_buffs[index].size / BytesPerSample,
-            }
+            Status = ErrorCode.None,
+            Flags = flags,
+            TimeNs = timeNs,
+            NumSamples = (int)_buffs[index].size / BytesPerSample,
         };
     }
 

@@ -1,4 +1,5 @@
 ﻿using System.Buffers;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace SDRInterface;
@@ -98,23 +99,27 @@ namespace SDRInterface;
         }
 
 
-        internal unsafe static IList<UIntPtr> ToPointerListInternal<T>(
+        internal unsafe static void*[] ToPointerListInternal<T>(
             Memory<T>[] memory,
             out MemoryHandle[] memoryHandles)
         {
             memoryHandles = memory.Select(mem => mem.Pin()).ToArray();
-            return ToPointerListInternal(memoryHandles.Select(handle => (UIntPtr)handle.Pointer).ToArray());
+            return ToPointerListInternal(memoryHandles.Select(handle => (IntPtr)handle.Pointer).ToArray());
         }
 
-        internal unsafe static IList<UIntPtr> ToPointerListInternal<T>(
+        internal unsafe static void*[] ToPointerListInternal<T>(
             ReadOnlyMemory<T>[] memory,
             out MemoryHandle[] memoryHandles)
         {
             memoryHandles = memory.Select(mem => mem.Pin()).ToArray();
-            return ToPointerListInternal(memoryHandles.Select(handle => (UIntPtr)handle.Pointer).ToArray());
+            return ToPointerListInternal(memoryHandles.Select(handle => (IntPtr)handle.Pointer).ToArray());
         }
 
-        internal static IList<UIntPtr> ToPointerListInternal(UIntPtr[] arr) => new List<UIntPtr>(arr);
-
-        internal static unsafe IList<UIntPtr> ToPointerListInternal(IntPtr[] arr) => new List<UIntPtr>(arr.Select(x => (UIntPtr) (void*) x));
+        internal static unsafe void*[] ToPointerListInternal(IntPtr[] arr)
+        {
+            var ret = new void*[arr.Length];
+            for (var i = 0; i < arr.Length; i++)
+                ret[i] = (void*) arr[i];
+            return ret;
+        }
     }

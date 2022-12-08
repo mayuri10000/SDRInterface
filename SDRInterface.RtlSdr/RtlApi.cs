@@ -3,7 +3,7 @@ using System.Text;
 
 namespace SDRInterface.RtlSdr;
 
-public enum RtlSdrTunerType
+internal enum RtlSdrTunerType
 {
     Unknown,
     E4000,
@@ -14,15 +14,15 @@ public enum RtlSdrTunerType
     R828D,
 }
 
-public enum RtlSdrDirectSampMode
+internal enum RtlSdrDirectSampMode
 {
     IQ, I, Q, I_Below, Q_Below
 }
 
 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-public unsafe delegate void RtlSdrReadAsyncCallback(byte* buf, uint len, IntPtr ctx);
+internal unsafe delegate void RtlSdrReadAsyncCallback(byte* buf, uint len, IntPtr ctx);
 
-public static unsafe class RtlApi
+internal static unsafe class RtlApi
 {
     private const string LibraryName = "rtlsdr";
     

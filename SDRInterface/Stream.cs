@@ -211,6 +211,7 @@ public class Stream : IDisposable
         .AddValue(StreamArgs);
 }
 
+[Flags]
 public enum StreamFlags
 {
     None          = 0,
@@ -275,14 +276,15 @@ public struct StreamHandle
 
 public struct StreamResult
 {
+    public ErrorCode Status;
     public int NumSamples;
     public StreamFlags Flags;
     public long TimeNs;
     public int ChanMask;
-}
 
-public struct StreamResultPairInternal
-{
-    public ErrorCode Code;
-    public StreamResult Result;
+    public static StreamResult Error(ErrorCode code, StreamFlags flags = StreamFlags.None)
+        => new StreamResult() { Status = code, Flags = flags};
+
+    public static StreamResult Success(int samples, StreamFlags flags = StreamFlags.None, long timeNs = 0)
+        => new StreamResult() { Status = ErrorCode.None, NumSamples = samples, Flags = flags, TimeNs = timeNs };
 }

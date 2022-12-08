@@ -123,7 +123,7 @@ public class Logger
     /// </summary>
     /// <param name="logLevel">The message's priority</param>
     /// <param name="format">The message format</param>
-    public static void LogF(LogLevel logLevel, string format, object[] args) =>
+    public static void LogF(LogLevel logLevel, string format, params object[] args) =>
         Log(logLevel, string.Format(format, args));
 
     /// <summary>
@@ -139,40 +139,6 @@ public class Logger
     /// </summary>
     /// <param name="logLevel">The message's priority</param>
     /// <param name="format">The message format</param>
-    public static void LogF(LogLevel logLevel, IFormatProvider formatProvider, string format, object[] args) =>
+    public static void LogF(LogLevel logLevel, IFormatProvider formatProvider, string format, params object[] args) =>
         Log(logLevel, string.Format(formatProvider, format, args));
-
-    /// <summary>
-    /// Log a message with a given level and string, formatted with System.String.Format().
-    /// </summary>
-    /// <param name="logLevel">The message's priority</param>
-    /// <param name="format">The message format</param>
-    public static void LogF(LogLevel logLevel, string format, object arg0, object arg1) =>
-        Log(logLevel, string.Format(format, arg0, arg1));
-
-    /// <summary>
-    /// Log a message with a given level and string, formatted with System.String.Format().
-    /// </summary>
-    /// <param name="logLevel">The message's priority</param>
-    /// <param name="format">The message format</param>
-    public static void LogF(LogLevel logLevel, IFormatProvider formatProvider, string format, object arg0,
-        object arg1) =>
-        Log(logLevel, string.Format(formatProvider, format, arg0, arg1));
-
-    /// <summary>
-    /// Log a message with a given level and string, formatted with System.String.Format().
-    /// </summary>
-    /// <param name="logLevel">The message's priority</param>
-    /// <param name="format">The message format</param>
-    public static void LogF(LogLevel logLevel, string format, object arg0, object arg1, object arg2) =>
-        Log(logLevel, string.Format(format, arg0, arg1, arg2));
-
-    /// <summary>
-    /// Log a message with a given level and string, formatted with System.String.Format().
-    /// </summary>
-    /// <param name="logLevel">The message's priority</param>
-    /// <param name="format">The message format</param>
-    public static void LogF(LogLevel logLevel, IFormatProvider formatProvider, string format, object arg0, object arg1,
-        object arg2) =>
-        Log(logLevel, string.Format(formatProvider, format, arg0, arg1, arg2));
 }

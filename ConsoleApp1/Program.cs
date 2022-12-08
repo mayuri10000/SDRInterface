@@ -18,11 +18,7 @@ class Program
         
         var s = d.SetupRxStream(StreamFormat.ComplexFloat32, new uint[] { 0 });
         var r = s.Activate();
-        while (true)
-        {
-            var buf = new float[s.MTU];
-            r = s.Read(ref buf, 10000, out var _);
-            Console.WriteLine(r);
-        }
+        var buf = new float[(int)s.MTU * 2];
+        Console.Read();
     }
 }
