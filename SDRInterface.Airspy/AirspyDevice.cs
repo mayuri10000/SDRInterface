@@ -272,7 +272,7 @@ public unsafe partial class AirspyDevice : Device
         new ArgInfo()
         {
             Key = "biastee",
-            Value = "false",
+            Value = "False",
             Name = "Bias tee",
             Description = "Enable the 4.5v DC Bias tee to power SpyVerter / LNA / etc. via antenna connection.",
             Type = ArgType.Bool
@@ -280,7 +280,7 @@ public unsafe partial class AirspyDevice : Device
         new ArgInfo()
         {
             Key = "bitpack",
-            Value = "false",
+            Value = "False",
             Name = "Bit Pack",
             Description = "Enable packing 4 12-bit samples into 3 16-bit words for 25% less USB trafic.",
             Type = ArgType.Bool
@@ -291,7 +291,7 @@ public unsafe partial class AirspyDevice : Device
     {
         if (key == "biastee")
         {
-            var enable = value == "true";
+            var enable = value == "True";
             _rfBias = enable;
 
             AirspyApi.SetRfBias(_dev, (byte)(enable ? 1 : 0));
@@ -299,7 +299,7 @@ public unsafe partial class AirspyDevice : Device
 
         if (key == "bitpack")
         {
-            var enable = value == "true";
+            var enable = value == "True";
             _bitPack = enable;
 
             AirspyApi.SetPacking(_dev, (byte)(enable ? 1 : 0));

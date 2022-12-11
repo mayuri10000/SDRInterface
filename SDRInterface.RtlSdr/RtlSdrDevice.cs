@@ -175,7 +175,6 @@ public unsafe partial class RtlSdrDevice : Device
     {
         // key/value pairs for any useful information
         // this also gets printed in --probe
-        { "origin", "Mayuri is my waifu" }, // TODO: Github Url
         { "index", _deviceId.ToString() }
     };
     #endregion
@@ -499,7 +498,7 @@ public unsafe partial class RtlSdrDevice : Device
             var offsetTuneArg = new ArgInfo()
             {
                 Key = "offset_tune",
-                Value = "false",
+                Value = "False",
                 Name = "Offset Tune",
                 Description = "RTL-SDR Offset Tuning Mode",
                 Type = ArgType.Bool
@@ -510,7 +509,7 @@ public unsafe partial class RtlSdrDevice : Device
             var iqSwapArg = new ArgInfo()
             {
                 Key = "iq_swap",
-                Value = "false",
+                Value = "False",
                 Name = "I/Q Swap",
                 Description = "RTL-SDR I/Q Swap Mode",
                 Type = ArgType.Bool
@@ -521,7 +520,7 @@ public unsafe partial class RtlSdrDevice : Device
             var digitalAgcArg = new ArgInfo()
             {
                 Key = "digital_agc",
-                Value = "false",
+                Value = "False",
                 Name = "Digital AGC",
                 Description = "RTL-SDR digital AGC mode",
                 Type = ArgType.Bool
@@ -532,7 +531,7 @@ public unsafe partial class RtlSdrDevice : Device
             var testModeArg = new ArgInfo()
             {
                 Key = "testmode",
-                Value = "false",
+                Value = "False",
                 Name = "Test Mode",
                 Description = "RTL-SDR Test Mode",
                 Type = ArgType.Bool
@@ -543,7 +542,7 @@ public unsafe partial class RtlSdrDevice : Device
             var biasTeeArg = new ArgInfo()
             {
                 Key = "biastee",
-                Value = "false",
+                Value = "False",
                 Name = "Bias Tee",
                 Description = "RTL-SDR Blog V.3 Bias-Tee Mode",
                 Type = ArgType.Bool
@@ -569,30 +568,30 @@ public unsafe partial class RtlSdrDevice : Device
         }
         else if (key == "iq_swap")
         {
-            _iqSwap = value == "true";
+            _iqSwap = value == "True";
             Logger.LogF(LogLevel.Debug, "RTL-SDR I/Q Swap: {0}", _iqSwap);
         }
         else if (key == "offset_tune")
         {
-            _offsetMode = value == "true";
+            _offsetMode = value == "True";
             Logger.LogF(LogLevel.Debug, "RTL-SDR offset_tune mode: {0}", _offsetMode);
             RtlApi.SetOffsetTuning(_dev, _offsetMode ? 1 : 0);
         }
         else if (key == "digital_agc")
         {
-            _digitalAgc = value == "true";
+            _digitalAgc = value == "True";
             Logger.LogF(LogLevel.Debug, "RTL-SDR digital AGC mode: {0}", _digitalAgc);
             RtlApi.SetAgcMode(_dev, _digitalAgc ? 1 : 0);
         }
         else if (key == "testmode")
         {
-            _testMode = value == "true";
+            _testMode = value == "True";
             Logger.LogF(LogLevel.Debug, "RTL-SDR test mode: {0}", _testMode);
             RtlApi.SetTestMode(_dev, _testMode ? 1 : 0);
         }
         else if (key == "biastee")
         {
-            _biasTee = value == "true";
+            _biasTee = value == "True";
             Logger.LogF(LogLevel.Debug, "RTL-SDR bias tee mode: {0}", _biasTee);
             RtlApi.SetBiasTee(_dev, _biasTee ? 1 : 0);
         }

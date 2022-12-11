@@ -221,7 +221,7 @@ public unsafe partial class HackRfDevice : Device
         new ArgInfo()
         {
             Key = "bias_tx",
-            Value = "false",
+            Value = "False",
             Name = "Antenna Bias",
             Description = "Antenna port power control.",
             Type = ArgType.Bool
@@ -234,7 +234,7 @@ public unsafe partial class HackRfDevice : Device
         {
             lock (_deviceMutex)
             {
-                _txStream.bias = value == "true";
+                _txStream.bias = value == "True";
                 var ret = HackRfApi.SetAntennaEnable(_dev, _txStream.bias ? 1u : 0u);
                 if (ret != HackRfError.Success)
                 {
@@ -248,7 +248,7 @@ public unsafe partial class HackRfDevice : Device
     {
         if (key == "bias_tx")
         {
-            return _txStream.bias ? "true" : "false";
+            return _txStream.bias ? "True" : "False";
         }
 
         return "";

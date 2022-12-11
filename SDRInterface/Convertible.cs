@@ -60,4 +60,6 @@ public class Convertible : IConvertible
     public uint ToUInt32(IFormatProvider? provider) => uint.Parse(_value);
 
     public ulong ToUInt64(IFormatProvider? provider) => UInt64.Parse(_value);
+
+    public override string ToString() => _value;
 }
