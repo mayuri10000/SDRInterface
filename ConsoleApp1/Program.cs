@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Numerics;
 using System.Reflection;
 using SDRInterface;
 
@@ -9,8 +10,6 @@ class Program
     public static void Main(String[] args)
     {
         Logger.LogLevel = LogLevel.Trace;
-        var assembly = Assembly.LoadFile(@"C:\Users\qq276\RiderProjects\SDRInterface\ConsoleApp1\bin\Debug\net6.0\SDRInterface.RtlSdr.dll");
-        Registry.RegisterAssembly(assembly);
         var e = Device.Enumerate("");
         var d = Device.Make(e[0]);
         var f = d.GetFrequency(Direction.Rx, 0);
@@ -19,6 +18,10 @@ class Program
         var s = d.SetupRxStream(StreamFormat.ComplexFloat32, new uint[] { 0 });
         var r = s.Activate();
         var buf = new float[(int)s.MTU * 2];
-        Console.Read();
+        while (true)
+        {
+            r = s.Read(ref buf, 100000, out var res);
+            Console.WriteLine(r);
+        }
     }
 }

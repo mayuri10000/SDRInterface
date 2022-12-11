@@ -189,7 +189,7 @@ public abstract partial class Device : IDisposable
     public TxStream SetupTxStream(
         string format,
         uint[] channels,
-        string args) => SetupTxStream(format, channels, Utility.StringToKwargs(args));
+        string args = "") => SetupTxStream(format, channels, Utility.StringToKwargs(args));
 
     /// <summary>
     /// Initialize a receive stream given a list of channels and stream arguments.

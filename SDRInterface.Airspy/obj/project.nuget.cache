@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ESkQA1Snsu4SufC+wBJefCj052z+rf3ndjXoJpEHB4LHskh7Q8pEhE6YXCAD11SUFjBSiiL9mAGZ1fuIiYYUOQ==",
+  "dgSpecHash": "PExCbeucWB+PVJZAskPVJH0HEBFyKi+Mx5odo5mgB+/cBdUXIXcEA7K8DIqmwqGIr+YjL7/AgHCEhS1n99iedg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\qq276\\RiderProjects\\SDRInterface\\ConsoleApp1\\ConsoleApp1.csproj",
+  "projectFilePath": "C:\\Users\\qq276\\RiderProjects\\SDRInterface\\SDRInterface.Airspy\\SDRInterface.Airspy.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\qq276\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "C:\\Users\\qq276\\.nuget\\packages\\system.configuration.configurationmanager\\7.0.0\\system.configuration.configurationmanager.7.0.0.nupkg.sha512",

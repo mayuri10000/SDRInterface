@@ -9,6 +9,7 @@
       "ConsoleApp1/1.0.0": {
         "dependencies": {
           "SDRInterface": "1.0.0",
+          "SDRInterface.Airspy": "1.0.0",
           "SDRInterface.HackRF": "1.0.0",
           "SDRInterface.RtlSdr": "1.0.0"
         },
@@ -117,6 +118,14 @@
           "SDRInterface.dll": {}
         }
       },
+      "SDRInterface.Airspy/1.0.0": {
+        "dependencies": {
+          "SDRInterface": "1.0.0"
+        },
+        "runtime": {
+          "SDRInterface.Airspy.dll": {}
+        }
+      },
       "SDRInterface.HackRF/1.0.0": {
         "dependencies": {
           "SDRInterface": "1.0.0"
@@ -184,6 +193,11 @@
       "hashPath": "system.windows.extensions.7.0.0.nupkg.sha512"
     },
     "SDRInterface/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SDRInterface.Airspy/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

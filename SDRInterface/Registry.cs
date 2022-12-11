@@ -21,6 +21,7 @@ public class Registry
 
     static Registry()
     {
+        Module.LoadModules();
         RegisterAssembly(Assembly.GetCallingAssembly());
     }
 
@@ -76,6 +77,7 @@ public class Registry
 
         var reg = new Registry(name, findFunc, makeFunc);
         Registries.Add(reg);
+        Logger.LogF(LogLevel.Debug, "Registered driver {0} with type {1}", name, type.FullName);
     }
 
     public static void RegisterAssembly(Assembly assembly)
